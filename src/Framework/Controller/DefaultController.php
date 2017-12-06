@@ -10,7 +10,7 @@ use App\Domain\Runtasty;
 
 class DefaultController extends Controller {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="home", methods={"GET"})
      */
     public function home (Request $request, Runtasty $runtasty): JsonResponse{
         $page = $request->query->get('page', 1);
