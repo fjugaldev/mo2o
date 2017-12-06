@@ -9,6 +9,14 @@ class Recipe {
     private $ingredients;
     private $thumbnail;
 
+    public function __construct()
+    {
+        $this->title = '';
+        $this->href = '';
+        $this->ingredients = array();
+        $this->thumbnail = '';
+    }
+    
     public function getTitle(): string {
         return $this->title;
     }
@@ -39,6 +47,10 @@ class Recipe {
 
     public function setThumbnail($thumbnail) {
         $this->thumbnail = $thumbnail;
+    }
+    
+    public function toJson(): array {
+        return get_object_vars($this);
     }
 
 }
