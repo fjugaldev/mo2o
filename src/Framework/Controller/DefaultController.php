@@ -13,7 +13,8 @@ class DefaultController extends Controller {
      * @Route("/", name="home")
      */
     public function home (Request $request, Runtasty $runtasty): JsonResponse{
-        $response = new JsonResponse($runtasty->getReceip());
+        $page = $request->query->get('page', 1);
+        $response = new JsonResponse($runtasty->getReceip($page));
         return $response;
     }
 }

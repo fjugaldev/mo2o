@@ -6,10 +6,10 @@ use GuzzleHttp\Client;
 use App\Data\Recipe;
 
 class Runtasty {
-    public function getReceip(): array {
+    public function getReceip($page = 1): array {
         $guzzleClient = new Client(['base_uri' => 'http://www.recipepuppy.com/api/']);
         $guzzleResponse = $guzzleClient->request('GET', '', [
-            'query' => ['p' => 1]
+            'query' => ['p' => $page]
         ]);
 
         $responseJson = json_decode($guzzleResponse->getBody()->getContents());
