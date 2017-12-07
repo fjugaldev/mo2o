@@ -9,14 +9,13 @@ class Recipe {
     private $ingredients;
     private $thumbnail;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->title = '';
         $this->href = '';
         $this->ingredients = array();
         $this->thumbnail = '';
     }
-    
+
     public function getTitle(): string {
         return $this->title;
     }
@@ -33,22 +32,22 @@ class Recipe {
         return $this->thumbnail;
     }
 
-    public function setTitle($title) {
+    public function setTitle(string $title) {
         $this->title = $title;
     }
 
-    public function setHref($href) {
+    public function setHref(string $href) {
         $this->href = $href;
     }
 
-    public function setIngredients($ingredients) {
-        $this->ingredients = $ingredients;
+    public function setIngredients(string $ingredients) {
+        $this->ingredients = explode(', ', $ingredients);
     }
 
-    public function setThumbnail($thumbnail) {
+    public function setThumbnail(string $thumbnail) {
         $this->thumbnail = $thumbnail;
     }
-    
+
     public function toJson(): array {
         return get_object_vars($this);
     }
