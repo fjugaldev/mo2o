@@ -23,7 +23,7 @@ class Runtasty {
             $recipe = new Recipe();
             $recipe->setTitle($result->title);
             $recipe->setHref($result->href);
-            $recipe->setIngredients(explode(',', $result->ingredients));
+            $recipe->setIngredients($result->ingredients);
             $recipe->setThumbnail($result->thumbnail);
             array_push($response, $recipe->toJson());
         }
@@ -45,7 +45,7 @@ class Runtasty {
                 $recipe = new Recipe();
                 $recipe->setTitle($result->title);
                 $recipe->setHref($result->href);
-                $recipe->setIngredients(explode(',', $result->ingredients));
+                $recipe->setIngredients($result->ingredients);
                 $recipe->setThumbnail($result->thumbnail);
                 foreach ($recipe->getIngredients() as $ingredient) {
                     if (!in_array($ingredient, $response)) {
@@ -57,11 +57,11 @@ class Runtasty {
                 }
             }
             $page++;
-        }        
+        }
         return $this->sortArray($response);
     }
-    
-    private function sortArray (array $array): array{
+
+    private function sortArray(array $array): array {
         sort($array, SORT_STRING);
         return $array;
     }
