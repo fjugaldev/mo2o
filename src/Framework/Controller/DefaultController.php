@@ -30,9 +30,10 @@ class DefaultController extends Controller {
     }
     
     /**
-     * @Route("/api/ingredients/{ingredient}", name="ingredients_receips", methods={"GET"})
+     * @Route("/api/ingredients/", name="ingredients_receips_default", methods={"GET"})
+     * @Route("/api/ingredients/{ingredient}", defaults={"ingredient": ""}, name="ingredients_receips", methods={"GET"})
      */
-    public function ingredientsReceips (string $ingredient, Request $request, Runtasty $runtasty): JsonResponse{
+    public function ingredientsReceips (Request $request, Runtasty $runtasty, string $ingredient = ""): JsonResponse{
         $page = $request->query->get('page', 1);
         $response = new JsonResponse($runtasty->getReceip($page, '', $ingredient));
         return $response;
