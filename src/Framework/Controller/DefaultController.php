@@ -18,4 +18,23 @@ class DefaultController extends Controller {
         $response = new JsonResponse($runtasty->getReceip($page, $terms));
         return $response;
     }
+    
+    /**
+     * @Route("/api/ingredients", name="ingredients", methods={"GET"})
+     */
+    public function ingredients (Request $request, Runtasty $runtasty): JsonResponse{
+        $page = $request->query->get('page', 1);
+        $limit = $request->query->get('limit', 10);
+        $response = new JsonResponse($runtasty->getIngredient($page, $limit));
+        return $response;
+    }
+    
+    /**
+     * @Route("/api/ingredients/{ingredient}", name="ingredients_receips", methods={"GET"})
+     */
+    public function ingredientsReceips (string $ingredient, Request $request, Runtasty $runtasty): JsonResponse{
+        $page = $request->query->get('page', 1);
+        $response = new JsonResponse($runtasty->getReceip($page, '', $ingredient));
+        return $response;
+    }
 }
